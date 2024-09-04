@@ -1,3 +1,12 @@
+<?php 
+    require('../config/database.php');
+
+    $database = new Database;
+
+    $connexion = $database->getConnection();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
