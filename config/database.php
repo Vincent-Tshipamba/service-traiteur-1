@@ -2,11 +2,11 @@
 class Database
 {
     // On déclare les paramètres de connexion à la base de données
-    private $host = 'localhost'; # Le nom de l'hôte
-    private $db_name = 'service-traiteur'; # Le nom de la base de données
-    private $username = 'root'; # Le nom d'utilisateur
-    private $password = ""; # Le mot de passe de connexion
-
+    private $host = "localhost"; # Le nom de l'hôte
+    private $db_name = "service-traiteur"; # Le nom de la base de données
+    private $username = "Vincent"; # Le nom d'utilisateur
+    private $password = "Vincent"; # Le mot de passe de connexion
+    public $conn ;
     // On crée une fonction pour établir la connexion
     public function getConnection()
     {
