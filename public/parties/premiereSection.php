@@ -7,7 +7,7 @@
             type="video/mp4" autoplay muted loop></video>
     </div>
     <div class="video-content space-y-2 z-10">
-        <h1 class="font-light text-6xl">Savourez l'Excellence</h1>
+        <h1 class="font-light text-6xl text-blue-700">Savourez l'Excellence</h1>
         <h3 class="font-light text-3xl">Découvrez notre service traiteur d'exception</h3>
         <p class="font-light text-xl mt-4">Menus raffinés, événements inoubliables, livrés avec passion et soin. Commandez dès aujourd'hui !</p>
         <a href="#menus" class="mt-6 bg-white text-black px-4 py-2 rounded-lg">Voir Nos Menus</a>

@@ -31,11 +31,11 @@ switch ($request) {
 </head>
 
 <body>
-    <?php include_once('./partials/en-tete.php'); ?>
+    <?php include_once('./parties/en-tete.php'); ?>
 
 
     <main class="">
-        <?php include_once('./partials/premiereSection.php'); ?>
+        <?php include_once('./parties/premiereSection.php'); ?>
     </main>
 
 

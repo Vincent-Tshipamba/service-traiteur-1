@@ -4,8 +4,7 @@
         <div class="flex items-center justify-between">
             <div class="flex shrink-0">
                 <a aria-current="page" class="flex items-center" href="/">
-                    <img class="h-7 w-auto" src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="">
-                    <p class="sr-only">Website Title</p>
+                    <p class="">Kin Plaza Arjaan by Rotana</p>
                 </a>
             </div>
             <div class="hidden md:flex md:items-center md:justify-center md:gap-5">
