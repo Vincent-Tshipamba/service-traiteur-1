@@ -6,13 +6,16 @@
             src="../public/assets/Kin.mp4"
             type="video/mp4" autoplay muted loop></video>
     </div>
-    <div class="video-content space-y-2 z-10">
-        <h1 class="font-light text-6xl text-blue-700">Savourez l'Excellence</h1>
-        <h3 class="font-light text-3xl">Découvrez notre service traiteur d'exception</h3>
-        <p class="font-light text-xl mt-4">Menus raffinés, événements inoubliables, livrés avec passion et soin. Commandez dès aujourd'hui !</p>
-        <a href="#menus" class="mt-6 bg-white text-black px-4 py-2 rounded-lg">Voir Nos Menus</a>
+    <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
+        <h1 class="text-6xl font-extrabold leading-tight mb-4 drop-shadow-lg">Savourez l'Excellence</h1>
+        <p class="text-xl text-gray-200 mb-2">Découvrez notre service traiteur sur-mesure</p>
+        <p class="text-xl font-sans text-gray-300 mb-8">Menus gourmets et événements inoubliables, livrés avec passion et soin. <br> Commandez aujourd'hui !</p>
+        <a href="#menus" class="bg-yellow-500 text-black hover:bg-yellow-400 py-3 px-8 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+            Explorer Nos Menus
+        </a>
     </div>
 </section>
+
 
 
 <style>
