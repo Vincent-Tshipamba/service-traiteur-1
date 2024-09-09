@@ -32,9 +32,12 @@ switch ($request) {
     <?php include_once('./parties/en-tete.php'); ?>
 
     <main class="">
-        <?php include_once('./parties/premiereSection.php'); ?>
+        <?php include_once './parties/premiereSection.php'; ?>
+        <?php include_once './parties/menusSection.php'; ?>
+        <?php include_once './parties/contactForm.php'; ?>
+        <?php include_once './parties/piedDePage.php'; ?>
     </main>
-    <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="/service-traiteur/node_modules/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>
