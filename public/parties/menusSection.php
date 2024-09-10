@@ -4,7 +4,7 @@
 </div>
 
 <!-- ✅ Grid Section - Starts Here 👇 -->
-<section id="Menus"
+<section id="menus"
     class="container mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
 
     <!-- ✅ Carte du menu 1 - Début -->
@@ -17,12 +17,16 @@
             <!-- Détails du plat : titre, type de cuisine, prix -->
             <div class="px-4 py-3 w-full">
                 <!-- Catégorie ou type de cuisine -->
-                <span class="text-gray-400 mr-3 uppercase text-xs">Cuisine Française</span>
+                <span class="text-gray-400 mr-3 uppercase text-xs">Cuisine Méditérranéenne</span>
                 <!-- Nom du plat -->
-                <p class="text-lg font-bold text-black truncate block capitalize">Filet de Boeuf Grillé</p>
+                <p class="text-lg font-bold text-black truncate block capitalize">Le buffet méditérranéen</p>
+                <p class="text-base font-thin text-black">
+                    🍤 Dès 18h00 <br>
+                    🍤 Les mardis
+                </p>
                 <!-- Section prix avec possibilité d'afficher un prix réduit -->
                 <div class="flex items-center">
-                    <p class="text-lg font-semibold text-black cursor-auto my-3">$49</p>
+                    <p class="text-lg font-semibold text-black cursor-auto my-3">$50 / personne</p>
                     <del>
                         <p class="text-sm text-gray-600 cursor-auto ml-2">$65</p>
                     </del>
@@ -45,13 +49,13 @@
     <!--   ✅ Product card 2 - Starts Here 👇 -->
     <div class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
-            <img src="https://images.unsplash.com/photo-1651950519238-15835722f8bb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjh8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            <img src="/service-traiteur/public/img/juteuxCossaCossa.png"
                 alt="Product" class="h-80 w-full object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-full">
                 <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-black truncate block capitalize">Product Name</p>
+                <p class="text-lg font-bold text-black truncate block capitalize">Le juteux cossa cossa</p>
                 <div class="flex items-center">
-                    <p class="text-lg font-semibold text-black cursor-auto my-3">$149</p>
+                    <p class="text-lg font-semibold text-black cursor-auto my-3">$49 / personne</p>
                     <del>
                         <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
                     </del>
@@ -71,15 +75,19 @@
     <!--   ✅ Product card 3 - Starts Here 👇 -->
     <div class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <a href="#">
-            <img src="https://images.unsplash.com/photo-1651950537598-373e4358d320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+            <img src="/service-traiteur/public/img/lesPâtesPestoPoulet.png"
                 alt="Product" class="h-80 w-full object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-full">
                 <span class="text-gray-400 mr-3 uppercase text-xs">Brand</span>
-                <p class="text-lg font-bold text-black truncate block capitalize">Product Name</p>
+                <p class="text-lg font-bold text-black truncate block capitalize">Les pâtes pesto poulet: copieuses et crémeuses</p>
+                <p class="font-thin text-base text-black">
+                    📅 Du Lundi au Vendredi <br/>
+                    ⏰ De 12h à 15h
+                </p>
                 <div class="flex items-center">
-                    <p class="text-lg font-semibold text-black cursor-auto my-3">$149</p>
+                    <p class="text-lg font-semibold text-black cursor-auto my-3">$30 / personne</p>
                     <del>
-                        <p class="text-sm text-gray-600 cursor-auto ml-2">$199</p>
+                        <p class="text-sm text-gray-600 cursor-auto ml-2">$50</p>
                     </del>
                     <div class="ml-auto"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
