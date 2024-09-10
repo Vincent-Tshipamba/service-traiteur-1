@@ -26,6 +26,7 @@ switch ($request) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rotana Hotel</title>
     <link href="css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 
 <body>
@@ -34,6 +35,7 @@ switch ($request) {
     <main class="">
         <?php include_once './parties/premiereSection.php'; ?>
         <?php include_once './parties/menusSection.php'; ?>
+        <?php include_once './parties/services.php'; ?>
         <?php include_once './parties/contactForm.php'; ?>
         <?php include_once './parties/piedDePage.php'; ?>
     </main>

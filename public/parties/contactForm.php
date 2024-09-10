@@ -1,4 +1,4 @@
-<section class="bg-yellow-50 dark:bg-slate-800" id="contact">
+<section class="dark:bg-slate-800" id="contact">
     <div class="container mx-auto">
         <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
             <div class="mb-4">
