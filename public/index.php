@@ -16,6 +16,10 @@ switch ($request) {
     case '/':
         require 'index.php';
         break;
+
+    case '/admin':
+        require 'admin/dashboard.php';
+        break;
 }
 ?>
 <!DOCTYPE html>
@@ -30,7 +34,7 @@ switch ($request) {
 </head>
 
 <body>
-    <?php include_once('./parties/en-tete.php'); ?>
+    <?php include_once './parties/en-tete.php'; ?>
 
     <main class="">
         <?php include_once './parties/premiereSection.php'; ?>
