@@ -87,7 +87,7 @@
                                         d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z" />
                                 </svg>
                                 <span class=" text-gray-900  dark:text-gray-200">
-                                    Menus
+                                    Alimentation
                                 </span>
 
                             </button>
@@ -95,15 +95,15 @@
                         <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
                             <div class="p-4 border-b border-gray-200 dark:border-gray-700">
                                 <p
-                                    class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900 hover:text-gray dark:text-gray-400 {{ request()->routeIs('hashtags.index') ? ' bg-gray-100 dark:bg-gray-700' : 'bg-white dark:bg-gray-800' }}">
-                                    <a href="/service-traiteur/public/admin/menus">Liste des plats</a>
+                                    class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900 hover:text-gray dark:text-gray-400 ">
+                                    <a href="/service-traiteur/public/admin/menus">Liste des menus</a>
                                 </p>
                                 <p
-                                    class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900hover:text-gray dark:text-gray-400 {{ request()->routeIs('categories.index') ? ' bg-gray-100 dark:bg-gray-700' : 'bg-white dark:bg-gray-800' }}">
-                                    <a href="">Catégories</a>
+                                    class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900hover:text-gray dark:text-gray-400 ">
+                                    <a href="/service-traiteur/public/admin/categories">Liste des catégories</a>
                                 </p>
                                 <p
-                                    class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900 hover:text-gray dark:text-gray-400 {{ request()->routeIs('typevents.index') ? ' bg-gray-100 dark:bg-gray-700' : 'bg-white dark:bg-gray-800' }}">
+                                    class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900 hover:text-gray dark:text-gray-400">
                                     <a href="#">Commandes</a>
                                 </p>
 
