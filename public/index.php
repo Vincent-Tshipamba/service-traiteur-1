@@ -10,15 +10,11 @@ $request = $_SERVER['REQUEST_URI'];
 
 // Retirer les paramètres GET s'il y en a
 $request = strtok($request, '?');
-
+// die($request);  
 // Définir les routes
 switch ($request) {
-    case '/':
+    case '/service-traiteur/public':
         require 'index.php';
-        break;
-
-    case '/admin':
-        require 'admin/dashboard.php';
         break;
 }
 ?>
