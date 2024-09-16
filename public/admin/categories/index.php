@@ -1,0 +1,125 @@
+<?php require '../requetes/listcategories.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $title ?? 'Rotana Hotel'; ?></title>
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link href="../../css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.6/css/dataTables.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.1/css/fixedColumns.dataTables.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/select/2.1.0/css/select.dataTables.css">
+</head>
+
+<body>
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <?php include '../navigation.php'; ?>
+        <div class="sm:ml-64 bg-[#eaeaebf3] pt-20 px-2 md:px-5 pb-4 ml-12 backdrop-blur-2xl">
+
+            <div class="flex space-x-5 items-center mb-5">
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                        <li class="inline-flex items-center">
+                            <a href="/service-traiteur/public/admin" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                                <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                                </svg>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <div class="flex items-center">
+                                <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                                <p class="ms-1 text-sm font-medium text-gray-700 md:ms-2 dark:text-gray-400 dark:hover:text-white">Categories</p>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mb-4">
+                <!-- Title of the page -->
+                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                    Liste des catégories de plats
+                </h2>
+            </div>
+
+            <div class="">
+                <table id="categoriesTable" class="w-full stripe row-border order-column nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>N°</th>
+                            <th>Nom</th>
+                            <th>Description</th>
+                            <th>Date de création</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (!empty($categories)) : ?>
+                            <?php foreach ($categories as $key => $categorie) : ?>
+                                <tr>
+                                    <td></td>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $categorie['nom'] ?></td>
+                                    <td>
+                                        <a href="#" class="description-truncated">
+                                            <?= substr($categorie['description'], 0, 45) . (strlen($categorie['description']) > 45 ? '...' : '') ?>
+                                        </a>
+                                        <span class="description-full" style="display: none;">
+                                            <?= $categorie['description'] ?>
+                                        </span>
+                                    </td>
+                                    <td><?= $categorie['created_at'] ?></td>
+                                    <td>
+                                        <a href="detail.php?id=<?= $categorie['id'] ?>">
+                                            <svg class="w-6 h-6 hover:text-gray-800 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd" d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/dataTables.fixedColumns.js"></script>
+    <script src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/fixedColumns.dataTables.js"></script>
+    <script src="https://cdn.datatables.net/select/2.1.0/js/dataTables.select.js"></script>
+    <script src="https://cdn.datatables.net/select/2.1.0/js/select.dataTables.js"></script>
+    <script src="/service-traiteur/node_modules/flowbite/dist/flowbite.min.js"></script>
+
+    <script>
+        new DataTable('#categoriesTable', {
+            columnDefs: [{
+                orderable: false,
+                render: DataTable.render.select(),
+                targets: 0
+            }],
+            order: [
+                [1, 'asc']
+            ],
+            select: {
+                style: 'os',
+                selector: 'td:first-child'
+            }
+        });
+    </script>
+
+</body>

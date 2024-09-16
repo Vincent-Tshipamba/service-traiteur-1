@@ -1,9 +1,19 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./public/**/*.{html,php,js}", "./node_modules/flowbite/**/*.js"],
-  theme: {
-    extend: {},
-  },
-  plugins: [require('flowbite/plugin')],
-}
+import defaultTheme from "tailwindcss/defaultTheme";
 
+export default {
+  content: [
+    "./public/**/*.{html,js,php}",
+    "./node_modules/flowbite/**/*.js"
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+            },
+    },
+  },
+  plugins: [
+    require('flowbite/plugin')
+  ],
+  darkMode: "media"
+}
