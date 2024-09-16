@@ -1,17 +1,37 @@
 <?php
-session_start();
 
-require_once '../../../config/database.php';
+require_once '../../../config/connexion.php';
+
+require_once "../Auth.php";
+
+$auth = new Auth($pdo);
+
+if (!$auth->isAuthenticated()) {
+    header('Location: /service-traiteur/public/admin/login.php');
+    exit();
+}
+
+// Vérifier si l'utilisateur a le rôle 'admin'
+$userId = $_SESSION['user_id'];
+$query = "SELECT role FROM users WHERE id = :user_id";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(':user_id', $userId);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user['role'] !== 'admin') {
+    // Rediriger vers une page d'accès refusé ou autre si le rôle n'est pas 'admin'
+    header('Location: /service-traiteur/public/admin/access_denied.php');
+    exit();
+}
+
 
 $id = $_GET['id'];
 
-$db = new Database();
-
-$connexion = $db->getConnection();
-
-$query = "SELECT * FROM menus WHERE id=$id ORDER BY id DESC LIMIT 1";
-
-$menu = $connexion->query($query)->fetch(PDO::FETCH_ASSOC);
+$query = $pdo->prepare("SELECT * FROM menus WHERE id=:id ORDER BY id DESC LIMIT 1");
+$query->bindParam(":id", $id);
+$query->execute();
+$menu = $query->fetch(PDO::FETCH_ASSOC);
 
 ?>
 

@@ -1,3 +1,25 @@
+<?php 
+require_once '../../config/connexion.php';
+
+// Préparer la requête pour sélectionner les utilisateurs avec des mots de passe non hachés
+$stmt = $pdo->query("SELECT id, password FROM users WHERE password NOT LIKE '$2y$%'");
+
+// Mettre à jour chaque mot de passe non haché
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $id = $row['id'];
+    $password_clair = $row['password'];
+
+    // Hacher le mot de passe
+    $password_hache = password_hash($password_clair, PASSWORD_DEFAULT);
+
+    // Préparer la requête pour mettre à jour le mot de passe
+    $update_stmt = $pdo->prepare("UPDATE users SET password = :password WHERE id = :id");
+    $update_stmt->bindParam(':password', $password_hache);
+    $update_stmt->bindParam(':id', $id);
+    $update_stmt->execute();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,26 +33,39 @@
 </head>
 
 <body>
-    <div class="font-[sans-serif] max-h-full p-6 m-10 bg-gray-200">
-        <div class="p-6 bg-white grid md:grid-cols-2 items-center gap-4 max-md:gap-8 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
+    <div class="font-[sans-serif] max-h-72 m-6 bg-gray-200">
+        <div class="p-8 bg-white grid md:grid-cols-2 items-center gap-4 max-md:gap-8 shadow-lg shadow-blue-500/70 rounded-md">
             <div class=" px-4 py-2">
-                <form>
+                <form action="post_login.php" method="post">
                     <div class="mb-12">
-                        <h3 class="text-gray-800 text-3xl font-extrabold">Sign in</h3>
-                        <p class="text-sm mt-4 text-gray-800">Don't have an account <a href="javascript:void(0);" class="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">Register here</a></p>
+                        <h3 class="text-gray-800 text-3xl font-extrabold">Se connecter</h3>
                     </div>
+
+                    <?php if (isset($_SESSION['error'])) : ?>
+
+                        <div class="flex items-center p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+                            </svg>
+                            <span class="sr-only">Info</span>
+                            <div>
+                                <span class="font-medium"><?= $_SESSION['error']; unset($_SESSION['error']); ?></span>
+                            </div>
+                        </div>
+
+                    <?php endif; ?>
 
                     <div>
                         <label class="text-gray-800 text-xs block mb-2">Email</label>
                         <div class="relative flex items-center">
-                            <input name="email" type="text" required class="w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none" placeholder="Enter email" />
+                            <input name="email" type="text" required class="w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none" placeholder="Saisissez votre adresse mail" />
                         </div>
                     </div>
 
                     <div class="mt-8">
-                        <label class="text-gray-800 text-xs block mb-2">Password</label>
+                        <label class="text-gray-800 text-xs block mb-2">Mot de passe</label>
                         <div class="relative flex items-center">
-                            <input name="password" type="password" required class="w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none" placeholder="Enter password" />
+                            <input name="password" type="password" required class="w-full text-gray-800 text-sm border-b border-gray-300 focus:border-blue-600 px-2 py-3 outline-none" placeholder="Tapez votre mot de passe" />
                         </div>
                     </div>
 
@@ -38,18 +73,52 @@
                         <div class="flex items-center">
                             <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 shrink-0 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
                             <label for="remember-me" class="ml-3 block text-sm text-gray-800">
-                                Remember me
+                                Se souvenir de moi
                             </label>
                         </div>
                         <div>
-                            <a href="jajvascript:void(0);" class="text-blue-600 font-semibold text-sm hover:underline">
-                                Forgot Password?
+                            <a href="#" data-modal-target="default-modal" data-modal-toggle="default-modal" class="text-blue-600 font-semibold text-sm hover:underline">
+                                Mot de passe oublié?
                             </a>
+
+                            <!-- Modal à afficher si la personne a oublié son mot de passe -->
+
+                            <div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                <div class="relative p-4 w-full max-w-2xl max-h-full">
+                                    <!-- Modal content -->
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <!-- Modal header -->
+                                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                                Information
+                                            </h3>
+                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="p-4 md:p-5 space-y-4">
+                                            <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                                                Si vous êtes administrateur et que vous avez oublié votre mot de passe, veuillez nous contactez à l'adresse suivante :
+                                                <a href="mailto:rotana.admin@rotana.com" class="text-blue-600 font-semibold text-sm hover:underline">Rotana Support</a>
+                                            </p>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                            <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">D'accord</button>
+                                            <button data-modal-hide="default-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Annuler</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="mt-12">
-                        <button type="button" class="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                        <button type="submit" class="w-full shadow-xl py-2.5 px-4 text-sm tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
                             Sign in
                         </button>
                     </div>

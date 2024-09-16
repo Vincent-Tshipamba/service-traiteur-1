@@ -1,4 +1,27 @@
-<?php require '../requetes/getmenus.php'; ?>
+<?php require '../requetes/getmenus.php';
+
+require_once "../Auth.php";
+$auth = new Auth($pdo);
+
+if (!$auth->isAuthenticated()) {
+    header('Location: /service-traiteur/public/admin/login.php');
+    exit();
+}
+
+// Vérifier si l'utilisateur a le rôle 'admin'
+$userId = $_SESSION['user_id'];
+$query = "SELECT role FROM users WHERE id = :user_id";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(':user_id', $userId);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user['role'] !== 'admin') {
+    // Rediriger vers une page d'accès refusé ou autre si le rôle n'est pas 'admin'
+    header('Location: /service-traiteur/public/admin/access_denied.php');
+    exit();
+}
+?>
 
 
 <!DOCTYPE html>

@@ -1,19 +1,41 @@
 <?php
-session_start();
+require_once "../Auth.php";
+require_once '../../../config/connexion.php';
 
-require_once '../../../config/database.php';
+$auth = new Auth($pdo);
+
+if (!$auth->isAuthenticated()) {
+    header('Location: /service-traiteur/public/admin/login.php');
+    exit();
+}
+
+// Vérifier si l'utilisateur a le rôle 'admin'
+$userId = $_SESSION['user_id'];
+$query = "SELECT role FROM users WHERE id = :user_id";
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(':user_id', $userId);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user['role'] !== 'admin') {
+    // Rediriger vers une page d'accès refusé ou autre si le rôle n'est pas 'admin'
+    header('Location: /service-traiteur/public/admin/access_denied.php');
+    exit();
+}
 
 $id = $_GET['id'];
 
-$db = new Database();
 
-$connexion = $db->getConnection();
+$query = $pdo->prepare("SELECT * FROM categories WHERE id=:id ORDER BY id DESC LIMIT 1");
+$query->bindParam(":id", $id);
+$query->execute();
+$categorie = $query->fetch(PDO::FETCH_ASSOC);
 
-$query = "SELECT * FROM categories WHERE id=$id ORDER BY id DESC LIMIT 1";
-$query2 = "SELECT * FROM plats WHERE categorie_id=$id ORDER BY id DESC";
+$query2 = $pdo->prepare("SELECT * FROM plats WHERE categorie_id=:id ORDER BY id DESC");
+$query2->bindParam(":id", $id);
+$query2->execute();
+$platsparcategorie = $query2->fetch(PDO::FETCH_ASSOC);
 
-$categorie = $connexion->query($query)->fetch(PDO::FETCH_ASSOC);
-$platsparcategorie = $connexion->query($query2)->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
