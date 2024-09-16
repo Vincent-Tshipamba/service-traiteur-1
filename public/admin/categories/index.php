@@ -53,7 +53,6 @@
                 <table id="categoriesTable" class="w-full stripe row-border order-column nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>N°</th>
                             <th>Nom</th>
                             <th>Description</th>
@@ -65,7 +64,6 @@
                         <?php if (!empty($categories)) : ?>
                             <?php foreach ($categories as $key => $categorie) : ?>
                                 <tr>
-                                    <td></td>
                                     <td><?= $key + 1 ?></td>
                                     <td><?= $categorie['nom'] ?></td>
                                     <td>
@@ -107,18 +105,7 @@
 
     <script>
         new DataTable('#categoriesTable', {
-            columnDefs: [{
-                orderable: false,
-                render: DataTable.render.select(),
-                targets: 0
-            }],
-            order: [
-                [1, 'asc']
-            ],
-            select: {
-                style: 'os',
-                selector: 'td:first-child'
-            }
+        
         });
     </script>
 
