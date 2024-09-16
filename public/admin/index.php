@@ -12,15 +12,15 @@ if (!$auth->isAuthenticated()) {
 
 // Vérifier si l'utilisateur a le rôle 'admin'
 $userId = $_SESSION['user_id'];
-$query = "SELECT role FROM users WHERE id = :user_id";
+$query = "SELECT roles.name FROM users JOIN roles ON roles.id=users.role_id WHERE users.id = :user_id";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':user_id', $userId);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if ($user['role'] !== 'admin') {
+// die(print_r($user));
+if ($user['name'] !== 'super-admin' && $user['name'] !== 'admin') {
     // Rediriger vers une page d'accès refusé ou autre si le rôle n'est pas 'admin'
-    header('Location: /service-traiteur/public/admin/access_denied.php');
+    header('Location: /service-traiteur/public/admin/404.php');
     exit();
 }
 

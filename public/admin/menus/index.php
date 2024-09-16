@@ -10,7 +10,7 @@ if (!$auth->isAuthenticated()) {
 
 // Vérifier si l'utilisateur a le rôle 'admin'
 $userId = $_SESSION['user_id'];
-$query = "SELECT role FROM users WHERE id = :user_id";
+$query = "SELECT roles.name FROM users JOIN roles ON roles.id=users.role_id WHERE users.id = :user_id";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':user_id', $userId);
 $stmt->execute();

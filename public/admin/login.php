@@ -1,5 +1,13 @@
-<?php 
+<?php
 require_once '../../config/connexion.php';
+require_once "Auth.php";
+
+$auth = new Auth($pdo);
+
+if ($auth->isAuthenticated()) {
+    header('Location: /service-traiteur/public/admin');
+    exit();
+}
 
 // Préparer la requête pour sélectionner les utilisateurs avec des mots de passe non hachés
 $stmt = $pdo->query("SELECT id, password FROM users WHERE password NOT LIKE '$2y$%'");
@@ -49,7 +57,8 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                             </svg>
                             <span class="sr-only">Info</span>
                             <div>
-                                <span class="font-medium"><?= $_SESSION['error']; unset($_SESSION['error']); ?></span>
+                                <span class="font-medium"><?= $_SESSION['error'];
+                                                            unset($_SESSION['error']); ?></span>
                             </div>
                         </div>
 

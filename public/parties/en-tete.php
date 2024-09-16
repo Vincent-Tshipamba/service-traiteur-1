@@ -10,7 +10,7 @@
             <div class="hidden md:flex md:items-center md:justify-center md:gap-5">
                 <a aria-current="page"
                     class="inline-block rounded-lg px-2 py-1 text-base font-light text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                    href="#">Menus</a>
+                    href="#menus">Menus</a>
                 <a class="inline-block rounded-lg px-2 py-1 text-base font-light text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                     href="#">Réserver un repas</a>
                 <a class="inline-block rounded-lg px-2 py-1 text-base font-light text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"

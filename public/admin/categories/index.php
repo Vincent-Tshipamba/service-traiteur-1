@@ -1,6 +1,9 @@
-<?php require '../requetes/listcategories.php';
+<?php
+
+require '../requetes/listcategories.php';
 
 require_once "../Auth.php";
+
 $auth = new Auth($pdo);
 
 if (!$auth->isAuthenticated()) {
@@ -10,7 +13,8 @@ if (!$auth->isAuthenticated()) {
 
 // Vérifier si l'utilisateur a le rôle 'admin'
 $userId = $_SESSION['user_id'];
-$query = "SELECT role FROM users WHERE id = :user_id";
+$query = "SELECT roles.name FROM users JOIN roles ON roles.id=users.role_id WHERE users.id = :user_id";
+
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':user_id', $userId);
 $stmt->execute();
@@ -21,6 +25,7 @@ if ($user['role'] !== 'admin') {
     header('Location: /service-traiteur/public/admin/access_denied.php');
     exit();
 }
+
 ?>
 
 
@@ -86,7 +91,8 @@ if ($user['role'] !== 'admin') {
                     </thead>
                     <tbody>
                         <?php if (!empty($categories)) : ?>
-                            <?php $i=1; foreach ($categories as $key => $categorie) : ?>
+                            <?php $i = 1;
+                            foreach ($categories as $key => $categorie) : ?>
                                 <tr>
                                     <td><?= $i++; ?></td>
                                     <td><?= $categorie['nom'] ?></td>
