@@ -1,33 +1,38 @@
+<?php require_once '../../../config/database.php';
+
+$id = $_GET['id'];
+
+$db = new Database();
+
+$connexion = $db->getConnection();
+
+$query2 = "SELECT * FROM plats WHERE categorie_id=$id ORDER BY id DESC";
+
+$platsparcategorie = $connexion->query($query2)->fetch(PDO::FETCH_ASSOC);
+?>
 
 <div class="">
-    <table id="platsmenuTable" class="w-full stripe row-border order-column nowrap" style="width:100%">
+    <table id="platsparcatTable" class="w-full stripe row-border order-column nowrap" style="width:100%">
         <thead>
             <tr>
-                <th></th>
                 <th>N°</th>
                 <th>Nom</th>
-                <th>Description</th>
-                <th>Date de création</th>
+                <th>Prix</th>
+                <th>Disponibilité</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <?php if (!empty($plats)) : ?>
-                <?php foreach ($plats as $plat) : ?>
+            <?php if (!empty($platsparcategorie)) : ?>
+                <?php foreach ($platsparcategorie as $plat) : ?>
                     <tr>
-                        <td></td>
                         <td><?= $plat['id'] ?></td>
                         <td><?= $plat['nom'] ?></td>
                         <td>
-                            <a href="#" class="description-truncated">
-                                <?= substr($plat['description'], 0, 45) . (strlen($plat['description']) > 45 ? '...' : '') ?>
-                            </a>
-                            <span class="description-full" style="display: none;">
-                                <?= $plat['description'] ?>
-                            </span>
+                            <?= $plat['prix'] ?>
                         </td>
                         <td><?= $plat['created_at'] ?></td>
-
+                        <td><?= $plat['disponibilité'] ? '✔' : "❌" ?></td>
                         <td>
                             <a href="detail.php?id=<?= $plat['id'] ?>">
                                 <svg class="w-6 h-6 hover:text-gray-800 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -42,6 +47,8 @@
     </table>
 </div>
 
+
+
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/fixedcolumns/5.0.1/js/dataTables.fixedColumns.js"></script>
@@ -51,7 +58,7 @@
 <script src="/service-traiteur/node_modules/flowbite/dist/flowbite.min.js"></script>
 
 <script>
-    new DataTable('#platsmenuTable', {
-    
+    new DataTable('#platsparcatTable', {
+
     });
 </script>

@@ -10,7 +10,7 @@
     <!-- ✅ Carte du menu 1 - Début -->
     <div class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
         <!-- Lien cliquable vers les détails du menu -->
-        <a href="#">
+        <a href="/service-traiteur/public/commande.php">
             <!-- Image du plat -->
             <img src="/service-traiteur/public/img/BuffetMéditerranéen.png"
                 alt="Buffet Mediteraneen" class="h-80 w-full object-cover rounded-t-xl" />
@@ -48,7 +48,7 @@
 
     <!--   ✅ Product card 2 - Starts Here 👇 -->
     <div class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
+        <a href="/service-traiteur/public/commande.php">
             <img src="/service-traiteur/public/img/juteuxCossaCossa.png"
                 alt="Product" class="h-80 w-full object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-full">
@@ -74,7 +74,7 @@
 
     <!--   ✅ Product card 3 - Starts Here 👇 -->
     <div class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
+        <a href="/service-traiteur/public/commande.php">
             <img src="/service-traiteur/public/img/lesPâtesPestoPoulet.png"
                 alt="Product" class="h-80 w-full object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-full">
@@ -104,7 +104,7 @@
 
     <!--   ✅ Product card 4 - Starts Here 👇 -->
     <div class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
+        <a href="/service-traiteur/public/commande.php">
             <img src="https://images.unsplash.com/photo-1651950540805-b7c71869e689?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                 alt="Product" class="h-80 w-full object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-full">
@@ -130,7 +130,7 @@
 
     <!--   ✅ Product card 5 - Starts Here 👇 -->
     <div class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
+        <a href="/service-traiteur/public/commande.php">
             <img src="https://images.unsplash.com/photo-1649261191624-ca9f79ca3fc6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDd8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                 alt="Product" class="h-80 w-full object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-full">
@@ -156,7 +156,7 @@
 
     <!--   ✅ Product card 6 - Starts Here 👇 -->
     <div class="w-full bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
-        <a href="#">
+        <a href="/service-traiteur/public/commande.php">
             <img src="https://images.unsplash.com/photo-1649261191606-cb2496e97eee?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8NDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                 alt="Product" class="h-80 w-full object-cover rounded-t-xl" />
             <div class="px-4 py-3 w-full">

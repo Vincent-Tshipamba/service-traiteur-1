@@ -3,7 +3,7 @@
     <div class="px-4">
         <div class="flex items-center justify-between">
             <div class="flex">
-                <a aria-current="page" class="flex items-center" href="/">
+                <a aria-current="page" class="flex items-center" href="/service-traiteur/public">
                     <p class="text-lg font-medium">Kin Plaza Arjaan By <span class="text-yellow-500 font-semibold text-lg">Rotana</span></p>
                 </a>
             </div>

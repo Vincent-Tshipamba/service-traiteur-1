@@ -17,7 +17,7 @@
                     <a href="/service-traiteur/public/admin" class="flex ms-2 md:me-24">
                         <span
                             class="self-center font-semibold text-xl md:text-3xl whitespace-nowrap dark:text-white">
-                            Dashboard Kin Plaza Arjaan By Rotana
+                            Tableau de bord
                         </span>
                     </a>
                 </div>
@@ -65,7 +65,7 @@
 
                                 d="M17 9h2V7h-2zm1 14q-2.075 0-3.537-1.463T13 18t1.463-3.537T18 13t3.538 1.463T23 18t-1.463 3.538T18 23m-.5-2h1v-2.5H21v-1h-2.5V15h-1v2.5H15v1h2.5zm5.5-7.875q-.975-1.05-2.275-1.588T18 11q-.275 0-.513.013t-.487.062V10l-7-5.05V3h13zM1 21V11l7-5l7 5v.675q-1.8.85-2.9 2.588T11 18q0 .775.163 1.538T11.675 21H10v-6H6v6z" />
                         </svg>
-                        <span class="ms-3">Dashboard</span>
+                        <span class="ms-3">Tableau de bord</span>
 
                     </a>
                 </li>
@@ -99,12 +99,12 @@
                                     <a href="/service-traiteur/public/admin/menus">Liste des menus</a>
                                 </p>
                                 <p
-                                    class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900hover:text-gray dark:text-gray-400 ">
+                                    class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900 hover:text-gray dark:text-gray-400 ">
                                     <a href="/service-traiteur/public/admin/categories">Liste des catégories</a>
                                 </p>
                                 <p
                                     class="mb-2 p-2 hover:bg-gray-100 rounded-lg text-gray-900 hover:text-gray dark:text-gray-400">
-                                    <a href="#">Commandes</a>
+                                    <a href="/service-traiteur/public/admin/plats">Liste des plats</a>
                                 </p>
 
                             </div>
