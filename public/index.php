@@ -1,5 +1,5 @@
 <?php
-require('../config/database.php');
+require '../config/database.php';
 
 $database = new Database;
 
@@ -10,16 +10,14 @@ $request = $_SERVER['REQUEST_URI'];
 
 // Retirer les paramètres GET s'il y en a
 $request = strtok($request, '?');
-
+// die($request);  
 // Définir les routes
 switch ($request) {
-    case '/':
+    case '/service-traiteur/public':
         require 'index.php';
         break;
 }
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,20 +25,21 @@ switch ($request) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rotana Hotel</title>
-    <link href="./css/output.css" rel="stylesheet">
+    <link href="css/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 
 <body>
-    <?php include_once('./partials/en-tete.php'); ?>
-
+    <?php include_once './parties/en-tete.php'; ?>
 
     <main class="">
-        <?php include_once('./partials/premiereSection.php'); ?>
+        <?php include_once './parties/premiereSection.php'; ?>
+        <?php include_once './parties/menusSection.php'; ?>
+        <?php include_once './parties/services.php'; ?>
+        <?php include_once './parties/contactForm.php'; ?>
+        <?php include_once './parties/piedDePage.php'; ?>
     </main>
-
-
-
-    <script src="./node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="/service-traiteur/node_modules/flowbite/dist/flowbite.min.js"></script>
 </body>
 
 </html>
