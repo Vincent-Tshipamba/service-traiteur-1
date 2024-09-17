@@ -16,9 +16,8 @@ $stmt->bindParam(':user_id', $userId);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($user['role'] !== 'admin') {
-    // Rediriger vers une page d'accès refusé ou autre si le rôle n'est pas 'admin'
-    header('Location: /service-traiteur/public/admin/access_denied.php');
+if ($user['name'] !== 'super-admin' && $user['name'] !== 'admin') {
+    header(header: 'Location: /service-traiteur/public/admin/404.php');
     exit();
 }
 ?>

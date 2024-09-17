@@ -6,29 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $title ?? 'Rotana Hotel'; ?></title>
     <link href="../css/output.css" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 
-<body class="bg-[#eaeaebf3]">
+<body>
 
-    <div
-        class="flex bg-white dark:bg-gray-900 items-center justify-center px-6 py-16 text-sm border-t-2 rounded-b shadow-sm border-red-500">
-        <div class="ml-3">
-            <div class="flex font-bold text-3xl text-left text-black dark:text-gray-50">
-                <svg viewBox="0 0 24 24" class="w-8 h-8 text-red-500 stroke-current" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M12 8V12V8ZM12 16H12.01H12ZM21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <span class="ms-3 mb-2">Access refusé</span>
+
+    <div class="mx-auto h-screen w-screen bg-gray-50 flex justify-center items-center">
+        <div class="container flex flex-col md:flex-row items-center justify-between px-5 text-gray-700">
+            <div class="w-full lg:w-1/2 mx-8">
+                <div class="text-7xl text-yellow-500 font-dark font-extrabold mb-8"> 401</div>
+                <p class="text-2xl md:text-2xl font-light leading-normal mb-8">
+                    Désolé, vous n'avez pas les autorisations nécessaires pour voir cette page ! <br/>
+                    Veuillez en référer à votre supérieur si ceci est une erreur !
+                </p>
+
+
+                <a href="/service-traiteur/public" class="px-5 inline py-3 text-sm font-medium leading-5 shadow-2xl text-white transition-all duration-400 border border-transparent rounded-lg focus:outline-none bg-yellow-600 active:bg-green-600 hover:bg-yellow-700">Retourner à la page d'accueil</a>
             </div>
-            <div class="w-full text-gray-900 dark:text-gray-300 text-xl my-3">Vous n'êtes pas autorisé à accéder à cette page.</div>
-            <button  type="submit" class="text-white bg-yellow-600 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                <a href="/service-traiteur/public">Retourner à la page d'accueil</a>
-            </button>
+            <div class="w-full lg:flex lg:justify-end lg:w-1/2 mx-5 my-12">
+                <img src="https://user-images.githubusercontent.com/43953425/166269493-acd08ccb-4df3-4474-95c7-ad1034d3c070.svg" class="" alt="Page not found">
+            </div>
+
         </div>
     </div>
+
     <script src="/service-traiteur/node_modules/flowbite/dist/flowbite.min.js"></script>
+
 </body>
 
 </html>

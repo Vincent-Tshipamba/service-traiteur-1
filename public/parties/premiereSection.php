@@ -3,7 +3,7 @@
 <section class="relative h-screen flex flex-col items-center justify-center text-center text-white">
     <div class="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
         <video class="min-w-full min-h-full absolute object-cover"
-            src="../public/assets/Kin.mp4"
+            src="/service-traiteur/public/assets/Kin.mp4"
             type="video/mp4" autoplay muted loop></video>
     </div>
     <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
