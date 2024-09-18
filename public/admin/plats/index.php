@@ -71,8 +71,12 @@ if ($user['name'] !== 'super-admin' && $user['name'] !== 'admin') {
                     </div>
                     <div>
                         <div class="inline-flex gap-x-2">
+
                             <a href="/service-traiteur/public/admin/plats/create.php"
-                                class="hover:bg-yellow-300 text-white py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-yellow-500 hover:text-black focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
+                                class="hover:bg-yellow-400 hover:text-white py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-yellow-300 text-black focus:outline-none disabled:opacity-50 disabled:pointer-events-none">
+                                <svg class="w-6 h-6 text-gray-800 dark:text-white hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4.243a1 1 0 1 0-2 0V11H7.757a1 1 0 1 0 0 2H11v3.243a1 1 0 1 0 2 0V13h3.243a1 1 0 1 0 0-2H13V7.757Z" clip-rule="evenodd" />
+                                </svg>
                                 Créer un plat
                             </a>
                         </div>
@@ -130,24 +134,42 @@ if ($user['name'] !== 'super-admin' && $user['name'] !== 'admin') {
                             <th>#</th>
                             <th>Nom</th>
                             <th>Prix</th>
+                            <th>Catégorie</th>
+                            <th>Menu</th>
                             <th>Disponibilité</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if (!empty($plats)) : ?>
-                            <?php $key=1; foreach ($plats as $plat) : ?>
+                            <?php $key = 1;
+                            foreach ($plats as $plat) : ?>
                                 <tr>
                                     <td><?= $key++ ?></td>
                                     <td><?= $plat['nom'] ?></td>
                                     <td>
-                                        <?= $plat['prix'] ?>
+                                        <?= '$' . $plat['prix'] ?>
+                                    </td>
+                                    <td>
+                                        <a class="hover:text-gray-600 hover:underline hover:cursor-pointer" href="/service-traiteur/public/admin/categories/detail.php?id=<?= $plat['categorie_id'] ?>">
+                                            <?= $plat['categorie'] ?>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="hover:text-gray-600 hover:underline hover:cursor-pointer" href="/service-traiteur/public/admin/menus/detail.php?id=<?= $plat['menu_id'] ?>">
+                                            <?= $plat['menu'] ?>
+                                        </a>
                                     </td>
                                     <td><?= $plat['disponibilité'] ? "✔" : "❌" ?></td>
-                                    <td>
+                                    <td class="flex items-center justify-center space-x-1">
                                         <a href="detail.php?id=<?= $plat['id'] ?>">
                                             <svg class="w-6 h-6 hover:text-gray-800 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                                 <path fill-rule="evenodd" d="M4.998 7.78C6.729 6.345 9.198 5 12 5c2.802 0 5.27 1.345 7.002 2.78a12.713 12.713 0 0 1 2.096 2.183c.253.344.465.682.618.997.14.286.284.658.284 1.04s-.145.754-.284 1.04a6.6 6.6 0 0 1-.618.997 12.712 12.712 0 0 1-2.096 2.183C17.271 17.655 14.802 19 12 19c-2.802 0-5.27-1.345-7.002-2.78a12.712 12.712 0 0 1-2.096-2.183 6.6 6.6 0 0 1-.618-.997C2.144 12.754 2 12.382 2 12s.145-.754.284-1.04c.153-.315.365-.653.618-.997A12.714 12.714 0 0 1 4.998 7.78ZM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+                                        <a href="/service-traiteur/public/admin/plats/post-remove?id=<?= $plat['id'] ?>" onclick="removeplat(event)" data-modal-toggle="modal-remove-plat" data-modal-target="modal-remove-plat">
+                                            <svg class="svg-icon w-8 hover:text-gray-800 text-gray-500 dark:text-white" viewBox="0 0 20 20">
+                                                <path d="M17.114,3.923h-4.589V2.427c0-0.252-0.207-0.459-0.46-0.459H7.935c-0.252,0-0.459,0.207-0.459,0.459v1.496h-4.59c-0.252,0-0.459,0.205-0.459,0.459c0,0.252,0.207,0.459,0.459,0.459h1.51v12.732c0,0.252,0.207,0.459,0.459,0.459h10.29c0.254,0,0.459-0.207,0.459-0.459V4.841h1.511c0.252,0,0.459-0.207,0.459-0.459C17.573,4.127,17.366,3.923,17.114,3.923M8.394,2.886h3.214v0.918H8.394V2.886z M14.686,17.114H5.314V4.841h9.372V17.114z M12.525,7.306v7.344c0,0.252-0.207,0.459-0.46,0.459s-0.458-0.207-0.458-0.459V7.306c0-0.254,0.205-0.459,0.458-0.459S12.525,7.051,12.525,7.306M8.394,7.306v7.344c0,0.252-0.207,0.459-0.459,0.459s-0.459-0.207-0.459-0.459V7.306c0-0.254,0.207-0.459,0.459-0.459S8.394,7.051,8.394,7.306"></path>
                                             </svg>
                                         </a>
                                     </td>
@@ -160,6 +182,7 @@ if ($user['name'] !== 'super-admin' && $user['name'] !== 'admin') {
         </div>
 
     </div>
+    <?php include_once '../composants/modal-remove-plat.php'; ?>
 
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.6/js/dataTables.js"></script>
@@ -174,8 +197,16 @@ if ($user['name'] !== 'super-admin' && $user['name'] !== 'admin') {
             responsive: true,
         });
     </script>
+    <script>
+        function removeplat(event) {
+            event.preventDefault()
 
+            let link = event.target.closest('a').getAttribute("href");
 
-
-
+            let form = document.getElementById('form-remove-plat');
+            form.setAttribute('action', link);
+        }
+    </script>
 </body>
+
+</html>

@@ -1,18 +1,12 @@
-<?php require_once '../../../config/database.php';
-
-$id = $_GET['id'];
-
-$db = new Database();
-
-$connexion = $db->getConnection();
+<?php 
 
 $query2 = "SELECT * FROM plats WHERE menu_id=$id ORDER BY id DESC";
 
-$platsparmenu = $connexion->query($query2)->fetch(PDO::FETCH_ASSOC);
+$platsparmenu = $pdo->query($query2)->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="">
-    <table id="platsparcatTable" class="w-full stripe row-border order-column nowrap" style="width:100%">
+    <table id="platsparmenu" class="w-full stripe row-border order-column nowrap" style="width:100%">
         <thead>
             <tr>
                 <th>N°</th>
@@ -24,14 +18,13 @@ $platsparmenu = $connexion->query($query2)->fetch(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php if (!empty($platsparmenu)) : ?>
-                <?php foreach ($platsparmenu as $plat) : ?>
+                <?php $key=1; foreach ($platsparmenu as $plat) : ?>
                     <tr>
-                        <td><?= $plat['id'] ?></td>
+                        <td><?= $key++ ?></td>
                         <td><?= $plat['nom'] ?></td>
                         <td>
                             <?= $plat['prix'] ?>
                         </td>
-                        <td><?= $plat['created_at'] ?></td>
                         <td><?= $plat['disponibilité'] ? '✔' : "❌" ?></td>
                         <td>
                             <a href="detail.php?id=<?= $plat['id'] ?>">
@@ -58,7 +51,7 @@ $platsparmenu = $connexion->query($query2)->fetch(PDO::FETCH_ASSOC);
 <script src="/service-traiteur/node_modules/flowbite/dist/flowbite.min.js"></script>
 
 <script>
-    new DataTable('#platsparcatTable', {
+    new DataTable('#platsparmenu', {
 
     });
 </script>

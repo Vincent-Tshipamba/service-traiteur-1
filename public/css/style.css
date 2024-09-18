@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* -----
+SVG Icons - svgicons.sparkk.fr
+----- */
+.svg-icon:hover{
+    color: #1f2937;
+}
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: #1a212a;
+}
+
+.svg-icon circle {
+    stroke: #040911;
+    stroke-width: 1;
+}

@@ -1,14 +1,8 @@
-<?php require_once '../../../config/database.php';
-
-$id = $_GET['id'];
-
-$db = new Database();
-
-$connexion = $db->getConnection();
+<?php 
 
 $query2 = "SELECT * FROM plats WHERE categorie_id=$id ORDER BY id DESC";
 
-$platsparcategorie = $connexion->query($query2)->fetch(PDO::FETCH_ASSOC);
+$platsparcategorie = $pdo->query($query2)->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <div class="">
@@ -24,14 +18,13 @@ $platsparcategorie = $connexion->query($query2)->fetch(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php if (!empty($platsparcategorie)) : ?>
-                <?php foreach ($platsparcategorie as $plat) : ?>
+                <?php $key=1; foreach ($platsparcategorie as $plat) : ?>
                     <tr>
-                        <td><?= $plat['id'] ?></td>
+                        <td><?= $key++; ?></td>
                         <td><?= $plat['nom'] ?></td>
                         <td>
                             <?= $plat['prix'] ?>
                         </td>
-                        <td><?= $plat['created_at'] ?></td>
                         <td><?= $plat['disponibilité'] ? '✔' : "❌" ?></td>
                         <td>
                             <a href="detail.php?id=<?= $plat['id'] ?>">
