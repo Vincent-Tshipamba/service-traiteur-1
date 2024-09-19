@@ -1,5 +1,5 @@
-        <section class="container py-24 mx-auto" id="contact">
-            <div class="mx-auto max-w-7xl">
+        <section class="container w-full py-24 mx-auto" id="contact">
+            <div class="mx-auto max-w-7xl w-full">
                 <div class="grid lg:grid-cols-2 grid-cols-1">
                     <div class="lg:mb-0 mb-10">
                         <div class="group w-full h-full">
@@ -32,10 +32,10 @@
                         </div>
                     </div>
 
-                    <div class="bg-gray-50 p-5 lg:p-11 lg:rounded-r-2xl rounded-2xl">
+                    <div class="bg-gray-50 p-5 lg:p-11 lg:rounded-r-2xl rounded-2xl w-full">
                         <h2 class="text-yellow-600 font-manrope text-4xl font-semibold leading-10 mb-11">Envoyez-nous un message</h2>
                         <input type="text" class="w-full h-12 text-gray-600 placeholder-gray-400  shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-5" placeholder="Votre nom">
-                        <input type="text" class="w-full h-12 text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-5" placeholder="Votre adresse mail">
+                        <input type="tex    t" class="w-full h-12 text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-5" placeholder="Votre adresse mail">
                         <input type="text" class="w-full h-12 text-gray-600 placeholder-gray-400 shadow-sm bg-transparent text-lg font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-5" placeholder="Votre numéro de téléphone">
                         <div class="mb-10">
                             <h4 class="text-gray-500 text-lg font-normal leading-7 mb-4">Moyen de communication préféré</h4>

@@ -1,9 +1,12 @@
-<?php
-require '../config/database.php';
-
-$database = new Database;
-
-$connexion = $database->getConnection();
+<?php session_start();
+require '../config/connexion.php';
+try {
+    $stmt = $pdo->prepare('SELECT plats.id, plats.nom, plats.description, plats.image, plats.prix, plats.disponibilite, categories.nom AS categorie, menus.nom AS menu FROM plats JOIN categories ON categories.id=plats.categorie_id JOIN menus ON menus.id=plats.menu_id ORDER BY plats.id DESC');
+    $stmt->execute();
+    $plats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (\Throwable $th) {
+    echo $th->getMessage();
+}
 
 ?>
 <!DOCTYPE html>

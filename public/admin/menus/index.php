@@ -89,7 +89,7 @@ if ($user['name'] !== 'super-admin' && $user['name'] !== 'admin') {
                             Les menus
                         </h2>
                         <p class="text-sm text-gray-600 dark:text-neutral-400">
-                            Ajoutez des repas, des menus, modifiez, exportez et bien plus encore.
+                            Ajoutez des menus, et supprimez ceux qui ne sont plus de service.
                         </p>
                     </div>
                 </div>

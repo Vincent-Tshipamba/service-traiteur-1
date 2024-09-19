@@ -7,11 +7,11 @@ if (!$auth->isAuthenticated()) {
 
 // Vérifier si l'utilisateur a le rôle 'admin'
 $userId = $_SESSION['user_id'];
-$query = "SELECT name FROM users WHERE id = :user_id";
+$query = "SELECT roles.name AS role, users.name FROM users JOIN roles ON roles.id=users.role_id WHERE users.id = :user_id";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':user_id', $userId);
 $stmt->execute();
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -40,8 +40,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                 </div>
                 <div class="flex items-center">
                     <div class="flex items-center ms-3">
-                        <div class="me-2">
-                            <p><?= ($row['name']) ?? ''; ?></p>
+                        <div class="mx-2">
+                            <p><?= ($user['name']) ?? ''; ?></p>
                         </div>
                         <div>
                             <button type="button"
@@ -51,6 +51,13 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                 <img class="w-8 h-8 rounded-full" src="/service-traiteur/public/img/profil.jpeg" alt="user photo">
 
                             </button>
+                        </div>
+                        <div class="">
+                            <a href="/service-traiteur/public" class="text-yellow-500 space-x-2 font-bold">
+                                <svg class="w-7 h-7 hover:text-gray-900 text-gray-700 dark:text-white ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fill-rule="evenodd" d="M11.293 3.293a1 1 0 0 1 1.414 0l6 6 2 2a1 1 0 0 1-1.414 1.414L19 12.414V19a2 2 0 0 1-2 2h-3a1 1 0 0 1-1-1v-3h-2v3a1 1 0 0 1-1 1H7a2 2 0 0 1-2-2v-6.586l-.293.293a1 1 0 0 1-1.414-1.414l2-2 6-6Z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
                         </div>
                         <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600"
                             id="dropdown-user">
@@ -78,7 +85,6 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <!-- Modal à afficher si la personne veut se déconnecter -->
     <?php require_once 'composants/logout-modal.php'; ?>
-
     <aside id="logo-sidebar"
         class="fixed left-0 z-40 w-64 h-screen transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
@@ -141,15 +147,24 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                         </div>
                     </div>
                 </li>
+                <?php if ($user['role'] == 'super-admin') { ?>
+                    <li>
+                        <a href="/service-traiteur/public/admin/users"
+                            class="flex items-center space-x-3 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="ms-3">Utilisateurs</span>
+                        </a>
+                    </li>
+                <?php } ?>
                 <li>
-                    <a href="/service-traiteur/public/admin/users"
+                    <a href="/service-traiteur/public/admin/commandes"
                         class="flex items-center space-x-3 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group ">
                         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                             <path fill-rule="evenodd" d="M8 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4H6Zm7.25-2.095c.478-.86.75-1.85.75-2.905a5.973 5.973 0 0 0-.75-2.906 4 4 0 1 1 0 5.811ZM15.466 20c.34-.588.535-1.271.535-2v-1a5.978 5.978 0 0 0-1.528-4H18a4 4 0 0 1 4 4v1a2 2 0 0 1-2 2h-4.535Z" clip-rule="evenodd" />
                         </svg>
-
-                        <span class="ms-3">Utilisateurs</span>
-
+                        <span class="ms-3">Liste des commandes</span>
                     </a>
                 </li>
             </ul>

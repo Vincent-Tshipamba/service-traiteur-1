@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $query2 = "SELECT * FROM plats WHERE categorie_id=$id ORDER BY id DESC";
 
@@ -18,14 +18,15 @@ $platsparcategorie = $pdo->query($query2)->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php if (!empty($platsparcategorie)) : ?>
-                <?php $key=1; foreach ($platsparcategorie as $plat) : ?>
+                <?php $key = 1;
+                foreach ($platsparcategorie as $plat) : ?>
                     <tr>
                         <td><?= $key++; ?></td>
                         <td><?= $plat['nom'] ?></td>
                         <td>
                             <?= $plat['prix'] ?>
                         </td>
-                        <td><?= $plat['disponibilité'] ? '✔' : "❌" ?></td>
+                        <td><?= $plat['disponibilite'] ? '✔' : "❌" ?></td>
                         <td>
                             <a href="detail.php?id=<?= $plat['id'] ?>">
                                 <svg class="w-6 h-6 hover:text-gray-800 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
